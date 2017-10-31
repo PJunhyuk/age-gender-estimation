@@ -64,7 +64,7 @@ def main():
 
         if not ret:
             print("error: failed to capture image")
-            return -1
+            break
 
         # input_img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
         input_img = img
