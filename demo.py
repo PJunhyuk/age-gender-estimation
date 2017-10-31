@@ -45,21 +45,18 @@ def main():
     model = WideResNet(img_size, depth=depth, k=k)()
     model.load_weights(weight_file)
 
-    print('#1')
-
     # capture video
     cap = cv2.VideoCapture('testset/test_video_01f.avi')
     cap.set(cv2.CAP_PROP_FRAME_WIDTH, 640)
     cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 480)
 
-    print('#2')
+    # fourcc = cv2.VideoWriter_fourcc(*'MPEG') # Be sure to use the lower case
+    # out = cv2.VideoWriter('testset/output.avi', fourcc, 20.0, (640, 480))
 
-    fourcc = cv2.VideoWriter_fourcc(*'MPEG') # Be sure to use the lower case
-    out = cv2.VideoWriter('testset/output.avi', fourcc, 20.0, (640, 480))
+    i = 0
 
     while True:
-        print('loop!')
-
+        i = i + 1
         # get video frame
         ret, img = cap.read()
 
@@ -98,8 +95,8 @@ def main():
                                     "F" if predicted_genders[i][0] > 0.5 else "M")
             draw_label(img, (d.left(), d.top()), label)
 
-        # cv2.imwrite("img.jpg", img)
-        out.write(img)
+        cv2.imwrite("testset/img_" + str(i) + ".jpg", img)
+        # out.write(img)
 
 
 if __name__ == '__main__':
