@@ -46,7 +46,7 @@ def main():
     model.load_weights(weight_file)
 
     # capture video
-    cap = cv2.VideoCapture('testset/test_video_01f.avi')
+    cap = cv2.VideoCapture('testset/test_video_03_01.mp4')
     cap.set(cv2.CAP_PROP_FRAME_WIDTH, 640)
     cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 480)
 
