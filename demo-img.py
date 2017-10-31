@@ -55,7 +55,7 @@ def main():
     # fourcc = cv2.VideoWriter_fourcc(*'MPEG') # Be sure to use the lower case
     # out = cv2.VideoWriter('testset/output.avi', fourcc, 20.0, (640, 480))
 
-    output_path = split(input_path, '.')[0]
+    output_path = input_path.split('.')[0]
 
     # get video frame
     ret, img = cap.read()
