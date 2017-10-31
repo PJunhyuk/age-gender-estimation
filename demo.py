@@ -5,6 +5,7 @@ import numpy as np
 import argparse
 from wide_resnet import WideResNet
 
+from moviepy.editor import *
 
 def get_args():
     parser = argparse.ArgumentParser(description="This script detects faces from web cam input, "
@@ -34,6 +35,7 @@ def main():
     depth = args.depth
     k = args.width
     weight_file = args.weight_file
+    input_path = args.path
 
     if not weight_file:
         weight_file = os.path.join("pretrained_models", "weights.18-4.06.hdf5")
@@ -47,14 +49,18 @@ def main():
     model.load_weights(weight_file)
 
     # capture video
-    cap = cv2.VideoCapture(args.path)
-    cap.set(cv2.CAP_PROP_FRAME_WIDTH, 640)
-    cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 480)
+    cap = cv2.VideoCapture(input_path)
+    # cap.set(cv2.CAP_PROP_FRAME_WIDTH, 640)
+    # cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 480)
 
     # fourcc = cv2.VideoWriter_fourcc(*'MPEG') # Be sure to use the lower case
     # out = cv2.VideoWriter('testset/output.avi', fourcc, 20.0, (640, 480))
 
     i = 0
+
+    output_path = input_path.split('.')[0]
+
+    frame_list = []
 
     while True:
         i = i + 1
@@ -96,8 +102,10 @@ def main():
                                     "F" if predicted_genders[i][0] > 0.5 else "M")
             draw_label(img, (d.left(), d.top()), label)
 
-        cv2.imwrite("testset/img_" + str(i) + ".jpg", img)
-        # out.write(img)
+        frame_list.append(img)
+
+    clip = ImageSequenceClip(frame_list, fps=cap.get(cv2.CAP_PROP_FPS))
+    clip.write_videofile(output_path + '_AGE.mp4', fps=cap.get(cv2.CAP_PROP_FPS))
 
 
 if __name__ == '__main__':
