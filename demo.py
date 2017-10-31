@@ -64,8 +64,8 @@ def main():
             print("error: failed to capture image")
             break
 
-        # input_img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
-        input_img = img
+        input_img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
+        # input_img = img
         img_h, img_w, _ = np.shape(input_img)
 
         # detect faces using dlib detector
