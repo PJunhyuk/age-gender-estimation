@@ -46,7 +46,7 @@ def main():
     model.load_weights(weight_file)
 
     # capture video
-    cap = cv2.VideoCapture(0)
+    cap = cv2.VideoCapture('testset/test_video_01f.avi')
     cap.set(cv2.CAP_PROP_FRAME_WIDTH, 640)
     cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 480)
 
@@ -88,11 +88,7 @@ def main():
                                     "F" if predicted_genders[i][0] > 0.5 else "M")
             draw_label(img, (d.left(), d.top()), label)
 
-        cv2.imshow("result", img)
-        key = cv2.waitKey(30)
-
-        if key == 27:
-            break
+        cv2.imwrite("img.jpg", img)
 
 
 if __name__ == '__main__':
