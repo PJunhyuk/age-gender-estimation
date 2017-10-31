@@ -16,6 +16,7 @@ def get_args():
                         help="depth of network")
     parser.add_argument("--width", type=int, default=8,
                         help="width of network")
+    parser.add_argument("--path", type=str, default=None, help="path to file")
     args = parser.parse_args()
     return args
 
@@ -46,7 +47,7 @@ def main():
     model.load_weights(weight_file)
 
     # capture video
-    cap = cv2.VideoCapture('testset/test_video_03_01.mp4')
+    cap = cv2.VideoCapture(args.path)
     cap.set(cv2.CAP_PROP_FRAME_WIDTH, 640)
     cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 480)
 
