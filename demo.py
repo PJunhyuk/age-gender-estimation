@@ -54,7 +54,8 @@ def main():
 
     print('#2')
 
-    out = cv2.VideoWriter('testset/output.avi',-1, 20.0, (640,480))
+    fourcc = cv2.cv.CV_FOURCC(*'X264')
+    out = cv2.VideoWriter('testset/output.avi', fourcc, 20.0, (int(width),int(height)))
 
     while True:
         print('loop!')
