@@ -45,10 +45,16 @@ def main():
     model = WideResNet(img_size, depth=depth, k=k)()
     model.load_weights(weight_file)
 
+    print('#1')
+
     # capture video
     cap = cv2.VideoCapture('testset/test_video_01f.avi')
     cap.set(cv2.CAP_PROP_FRAME_WIDTH, 640)
     cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 480)
+
+    print('#2')
+
+    out = cv2.VideoWriter('testset/output.avi', -1, 20.0, (640,480))
 
     while True:
         # get video frame
@@ -88,7 +94,11 @@ def main():
                                     "F" if predicted_genders[i][0] > 0.5 else "M")
             draw_label(img, (d.left(), d.top()), label)
 
-        cv2.imwrite("img.jpg", img)
+        # cv2.imwrite("img.jpg", img)
+        out.write(img)
+
+    out.release()
+    cv2.destroyAllWindows()
 
 
 if __name__ == '__main__':
