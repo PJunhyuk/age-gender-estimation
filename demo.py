@@ -57,6 +57,8 @@ def main():
     out = cv2.VideoWriter('testset/output.avi', -1, 20.0, (640,480))
 
     while True:
+        print('loop!')
+
         # get video frame
         ret, img = cap.read()
 
@@ -64,7 +66,8 @@ def main():
             print("error: failed to capture image")
             return -1
 
-        input_img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
+        # input_img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
+        input_img = img
         img_h, img_w, _ = np.shape(input_img)
 
         # detect faces using dlib detector
