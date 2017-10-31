@@ -54,8 +54,8 @@ def main():
 
     print('#2')
 
-    fourcc = cv2.VideoWriter_fourcc(*'mp4v') # Be sure to use the lower case
-    out = cv2.VideoWriter('testset/output.mp4', fourcc, 20.0, (640, 480))
+    fourcc = cv2.VideoWriter_fourcc(*'MPEG') # Be sure to use the lower case
+    out = cv2.VideoWriter('testset/output.avi', fourcc, 20.0, (640, 480))
 
     while True:
         print('loop!')
