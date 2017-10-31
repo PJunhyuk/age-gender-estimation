@@ -100,9 +100,6 @@ def main():
         # cv2.imwrite("img.jpg", img)
         out.write(img)
 
-    out.release()
-    cv2.destroyAllWindows()
-
 
 if __name__ == '__main__':
     main()
